@@ -1,62 +1,169 @@
+<!-- Cukup simpan kode ini sebagai file bernama index.html di komputer Anda -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Montserrat', sans-serif; background-color: #fcfbfa; color: #4a4a4a; text-align: center; }
-        .hero { padding: 60px 20px; background-color: #f4efe9; }
-        h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #b38f4f; margin-bottom: 10px; }
-        .sub-title { font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #7a7a7a; margin-bottom: 30px; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 40px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        .details { margin-bottom: 40px; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .details h2 { font-size: 1.5rem; color: #b38f4f; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
-        .details p { font-size: 1rem; line-height: 1.6; margin-bottom: 10px; }
-        .btn { display: inline-block; background-color: #b38f4f; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 1px; transition: background 0.3s; margin-top: 15px; }
-        .btn:hover { background-color: #96743b; }
-        footer { margin-top: 60px; padding: 20px; font-size: 0.8rem; color: #a1a1a1; border-top: 1px solid #eee; }
+        html { scroll-behavior: smooth; }
+        body { padding-bottom: 70px; background-color: #f7f4f0; }
+        .section { display: none; }
+        .section.active { display: block; }
     </style>
 </head>
-<body>
+<body class="font-sans text-stone-800">
 
-    <section class="hero">
-        <h1>Budi & Siti</h1>
-        <p class="sub-title">Undangan Pernikahan</p>
-    </section>
+    <!-- AUDIO BACKGROUND (Ganti link musik di src) -->
+    <audio id="bg-music" loop>
+        <source src="https://soundhelix.com" type="audio/mp3">
+    </audio>
 
-    <div class="container">
-        <!-- Bagian Video -->
-        <div class="video-container">
-            <!-- GANTI URL_VIDEO_YOUTUBE_KAMU dengan link embed youtube yang benar -->
-            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
-        </div>
+    <!-- TOMBOL MUSIK -->
+    <button onclick="toggleMusic()" class="fixed top-4 right-4 bg-amber-700 text-white p-3 rounded-full shadow-lg z-50">
+        <i id="music-icon" class="fas fa-music"></i>
+    </button>
 
-        <!-- Detail Acara -->
-        <div class="details">
-            <h2>Akad & Resepsi</h2>
-            <p><strong>Sabtu, 12 Desember 2026</strong></p>
-            <p>Pukul 09:00 WIB - Selesai</p>
-            <p>Gedung Serbaguna Indah, Jl. Raya No. 123, Jakarta</p>
-            <a href="https://maps.google.com" target="_blank" class="btn">Lihat Peta Lokasi</a>
-        </div>
-
-        <!-- RSVP / Konfirmasi Kehadiran -->
-        <div class="details">
-            <h2>Konfirmasi Kehadiran</h2>
-            <p>Mohon konfirmasi kehadiran Anda melalui formulir di bawah ini:</p>
-            <!-- GANTI LINK_GOOGLE_FORM_KAMU dengan link google form kamu -->
-            <a href="https://forms.google.com" target="_blank" class="btn">Isi Buku Tamu / RSVP</a>
+    <!-- ================= SECTION: HOME ================= -->
+    <div id="home" class="section active min-h-screen flex flex-col justify-center items-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://unsplash.com');">
+        <div class="text-white">
+            <p class="text-sm tracking-widest uppercase mb-2">The Wedding Of</p>
+            <h1 class="text-5xl font-serif my-4">DEWA & JESSLYN</h1>
+            <p class="text-lg italic mt-4">"Dan di antara tanda-tanda kebesaran-Nya..." (QS. Ar-Rum: 21)</p>
+            <button onclick="startUndangan()" class="mt-8 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-full font-semibold transition-all">Buka Undangan</button>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Budi & Siti Wedding. All Rights Reserved.</p>
-    </footer>
+    <!-- ================= SECTION: COUPLE ================= -->
+    <div id="couple" class="section min-h-screen py-20 px-6 max-w-md mx-auto text-center">
+        <h2 class="text-3xl font-serif text-amber-800 mb-10">Mempelai Pernikahan</h2>
+        
+        <!-- Pria -->
+        <div class="mb-12 bg-white p-6 rounded-2xl shadow-md">
+            <h3 class="text-xl font-bold text-stone-700">Dewa Ageng Pratama</h3>
+            <p class="text-sm text-stone-500 mt-1">Putra dari Bapak Agus Mulyanto & Ibu Kanthi Lestari</p>
+            <a href="https://instagram.com" class="inline-block mt-3 text-amber-700 text-sm"><i class="fab fa-instagram"></i> @dew.ag</a>
+        </div>
 
-</body>
-</html>
+        <div class="text-4xl text-amber-600 my-6">&</div>
+
+        <!-- Wanita -->
+        <div class="bg-white p-6 rounded-2xl shadow-md">
+            <h3 class="text-xl font-bold text-stone-700">Jesslyn Audryana</h3>
+            <p class="text-sm text-stone-500 mt-1">Putri dari Bapak Andri Christanto & Ibu Aluk Winarlin</p>
+            <a href="https://instagram.com" class="inline-block mt-3 text-amber-700 text-sm"><i class="fab fa-instagram"></i> @jesslyn1701</a>
+        </div>
+    </div>
+
+    <!-- ================= SECTION: EVENT ================= -->
+    <div id="event" class="section min-h-screen py-20 px-6 max-w-md mx-auto text-center">
+        <h2 class="text-3xl font-serif text-amber-800 mb-6">Waktu & Tempat</h2>
+        
+        <!-- VIDEO UNDANGAN -->
+        <div class="mb-8 rounded-2xl overflow-hidden shadow-lg bg-black">
+            <!-- Ganti URL src dengan link video YouTube Embed atau Google Drive Anda -->
+            <iframe class="w-full aspect-video" src="https://youtube.com" title="Video Undangan" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Akad -->
+        <div class="bg-white p-6 rounded-2xl shadow-md mb-6">
+            <h3 class="text-lg font-bold text-amber-700 border-b pb-2 mb-3">AKAD NIKAH</h3>
+            <p class="font-semibold">Jumat, 5 September 2025</p>
+            <p class="text-sm text-stone-600 mt-1">Pukul 09.00 WIB - Selesai</p>
+            <p class="text-sm text-stone-500 mt-2 font-light">Kediaman Mempelai Wanita<br>Jl. Ahmad Yani 104, Caruban</p>
+        </div>
+
+        <!-- Resepsi -->
+        <div class="bg-white p-6 rounded-2xl shadow-md mb-6">
+            <h3 class="text-lg font-bold text-amber-700 border-b pb-2 mb-3">RESEPSI</h3>
+            <p class="font-semibold">Sabtu, 6 September 2025</p>
+            <p class="text-sm text-stone-600 mt-1">Pukul 11.00 - 15.00 WIB</p>
+            <p class="text-sm text-stone-500 mt-2 font-light">GEDUNG GURU PGRI<br>Kabupaten Madiun</p>
+            <a href="https://google.com" class="inline-block mt-4 bg-amber-700 text-white text-xs px-4 py-2 rounded-full"><i class="fas fa-map-marker-alt"></i> Navigasi Google Maps</a>
+        </div>
+    </div>
+
+    <!-- ================= SECTION: GIFT ================= -->
+    <div id="gift" class="section min-h-screen py-20 px-6 max-w-md mx-auto text-center">
+        <h2 class="text-3xl font-serif text-amber-800 mb-4">Wedding Gift</h2>
+        <p class="text-sm text-stone-500 mb-8">Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan tanda kasih dapat melalui rekening di bawah ini:</p>
+        
+        <div class="bg-white p-6 rounded-2xl shadow-md mb-4 text-left">
+            <p class="font-bold text-blue-800">BANK BCA</p>
+            <p class="text-lg font-mono tracking-wider my-2">3280158495</p>
+            <p class="text-xs text-stone-500">a.n Jesslyn Audryana</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-md text-left">
+            <p class="font-bold text-teal-600">BANK MANDIRI</p>
+            <p class="text-lg font-mono tracking-wider my-2">1710014065182</p>
+            <p class="text-xs text-stone-500">a.n Dewa Ageng Pratama</p>
+        </div>
+    </div>
+
+    <!-- ================= SECTION: WISH ================= -->
+    <div id="wish" class="section min-h-screen py-20 px-6 max-w-md mx-auto">
+        <h2 class="text-3xl font-serif text-amber-800 text-center mb-8">Ucapan & RSVP</h2>
+        
+        <!-- Formulir RSVP terhubung ke Google Form -->
+        <!-- Ganti URL action di bawah dengan link 'formResponse' dari Google Form Anda -->
+        <form action="https://google.com" method="POST" target="_blank" class="bg-white p-6 rounded-2xl shadow-md">
+            <div class="mb-4">
+                <label class="block text-sm font-semibold mb-1">Nama Tamu</label>
+                <input type="text" name="entry.123456" required class="w-full border rounded-lg p-2 text-sm bg-stone-50" placeholder="Masukkan nama Anda">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-semibold mb-1">Konfirmasi Kehadiran</label>
+                <select name="entry.789101" class="w-full border rounded-lg p-2 text-sm bg-stone-50">
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-semibold mb-1">Ucapan & Doa</label>
+                <textarea name="entry.112131" rows="3" required class="w-full border rounded-lg p-2 text-sm bg-stone-50" placeholder="Tulis doa restu Anda..."></textarea>
+            </div>
+            <button type="submit" class="w-full bg-amber-700 text-white text-sm p-3 rounded-lg font-semibold hover:bg-amber-800 transition-all">Kirim Konfirmasi</button>
+        </form>
+    </div>
+
+    <!-- ================= MENU NAVIGASI BAWAH ( NAVBAR ) ================= -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-stone-200 flex justify-around py-2 z-50 max-w-md mx-auto rounded-t-xl shadow-xl">
+        <button onclick="switchTab('home')" class="nav-btn flex flex-col items-center text-amber-700" id="btn-home">
+            <i class="fas fa-home text-lg"></i><span class="text-[10px] mt-0.5">Home</span>
+        </button>
+        <button onclick="switchTab('couple')" class="nav-btn flex flex-col items-center text-stone-400" id="btn-couple">
+            <i class="fas fa-heart text-lg"></i><span class="text-[10px] mt-0.5">Couple</span>
+        </button>
+        <button onclick="switchTab('event')" class="nav-btn flex flex-col items-center text-stone-400" id="btn-event">
+            <i class="fas fa-calendar-alt text-lg"></i><span class="text-[10px] mt-0.5">Event</span>
+        </button>
+        <button onclick="switchTab('gift')" class="nav-btn flex flex-col items-center text-stone-400" id="btn-gift">
+            <i class="fas fa-gift text-lg"></i><span class="text-[10px] mt-0.5">Gift</span>
+        </button>
+        <button onclick="switchTab('wish')" class="nav-btn flex flex-col items-center text-stone-400" id="btn-wish">
+            <i class="fas fa-comment-dots text-lg"></i><span class="text-[10px] mt-0.5">Wish</span>
+        </button>
+    </nav>
+
+    <!-- ================= SCRIPT LOGIKAL WEBSITE ================= -->
+    <script>
+        function switchTab(tabId) {
+            // Sembunyikan semua section
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            // Tampilkan section terpilih
+            document.getElementById(tabId).classList.add('active');
+            
+            // Ubah warna ikon menu bawah
+            document.querySelectorAll('.nav-btn').forEach(b => {
+                b.classList.remove('text-amber-700');
+                b.classList.add('text-stone-400');
+            });
+            document.getElementById('btn-' + tabId).classList.remove('text-stone-400');
+            document.getElementById('btn-' + tabId).classList.add('text-amber-700');
+            
+            window.scrollTo(0,0);
+        }
+
